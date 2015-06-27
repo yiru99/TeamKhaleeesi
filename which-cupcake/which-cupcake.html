@@ -1,15 +1,19 @@
 <head>
-  <title>which-cupcake</title>
+    <title>which-cupcake</title>
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.3.0/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css">
 </head>
 
 <body>
 	<div class = "container">
 		<header>
-  		<h1>Welcome to Which-Cupcake!</h1>
+  			<h1>Which cupcake?</h1>
+            <button class="ask">
+                 <i class="fa fa-plus" style="padding-right:5px;"></i>Ask
+            </button>
 		</header>
-		<button class="ask">
-			Ask Which-Cupcake
-		</button>
+		
 		<!-- Use `name` to add a custom class to the outer container -->
   	{{#basicTabs name="homepageTabs" tabs=tabs}}
     <!--

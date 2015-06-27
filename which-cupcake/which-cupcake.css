@@ -1,1 +1,13 @@
-/* CSS declarations go here */
+body {
+    font-family: sans-serif;
+}
+
+.tab-list {
+    border-color: red;
+    margin: 100px;
+}
+
+.basicTabs-container .tabs-content-container,
+.dynamicTabs-container .tabs-content-container {
+	border: none;
+}
