@@ -43,9 +43,49 @@ if (Meteor.isClient) {
   });
 
   Template.poll.events({
-    'click.poll': function(event, template){
-      template.$(".content").toggle();
-    }
+
+    'click .question': function(event, template){
+        template.$(".content").toggle();
+    },
+      'click .vote1': function(event, template) {
+          console.log("Vote1 submitted");
+
+          var visited = Meteor.cookie.get("which-cupcake"+this._id);
+          console.log(visited);
+          if (visited != null) {
+              alert("You voted already!"); 
+              return false;
+          }
+
+          var votesByPollId = polls.find(this._id);
+          if (isNaN(this.vote1)) this.vote1 = 0;
+          console.log("vote1 before: "+this.vote1);
+          polls.update(this._id, {$set: {vote1: this.vote1+1}});
+          console.log("vote1 after: "+this.vote1);
+          console.log("updated poll " + this._id);
+          // console.log(polls);
+          // console.log(polls.find(this._id));
+          Meteor.cookie.set("which-cupcake"+this._id, 1);
+      },
+      'click .vote2': function(event, template) {
+          console.log("Vote2 submitted");
+
+          var visited = Meteor.cookie.get("which-cupcake"+this._id);
+          console.log(visited);
+          if (visited != null) {
+              alert("You voted already!"); 
+              return false;
+          }
+
+          var votesByPollId = polls.find(this._id);
+          if (isNaN(this.vote2)) this.vote2 = 0;
+          console.log("vote2 before: "+this.vote2);
+          polls.update(this._id, {$set: {vote2: this.vote2+1}});
+          console.log("vote2 after: "+this.vote2);
+          // console.log("updated poll " + this._id);
+          // console.log(polls);
+          Meteor.cookie.set("which-cupcake"+this._id, 1);
+      }
   });
 
   ReactiveTabs.createInterface({
@@ -122,28 +162,6 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.voteForm.events({
-        'submit form': function(event){
-            event.preventDefault();
-            console.log("Form submitted");
-
-            var pollId = event.target.pollId.value;
-            var decision = event.target.decision.value; 
-            var visited = Meteor.cookie.get(pollId);
-            console.log(visited);
-            if (visited != null) {
-                console.log("You voted!");
-                return;
-            }
-            var vote = {
-                pollId: pollId,
-                decision: decision
-            };
-            console.log(vote);
-            Meteor.cookie.set(pollId, 1);
-            // vote(event.target.decision);
-        }
-  });
 
   Template.askModal.helpers({  
     activeModal: function() {
