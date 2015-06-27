@@ -151,6 +151,9 @@ if (Meteor.isClient) {
     },
     option1: function(){
       return Session.get('option1'); 
+    },
+    option2: function(){
+      return Session.get('option2'); 
     }
   });
 
