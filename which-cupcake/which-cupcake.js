@@ -1,10 +1,17 @@
-polls = new Mongo.Collection("polls");
+/*
+  answer: {
+  pollId: pollId, (string)
+  decision: decision (0 or 1)
+  }
+*/
 
+polls = new Mongo.Collection("polls");
+votes = new Mongo.Collection("votes");
 
 if (Meteor.isClient) {
   Template.body.helpers({
     polls:function(){
-      return polls.find({});
+      return polls.find({},{sort: {createdAt: -1}});
     },
     isOpen: function(status){
       return status == "open"
@@ -17,6 +24,60 @@ if (Meteor.isClient) {
       // The `template` instance is unique per {{#basicTabs}} block.
       console.log('[tabs] Tab has changed! Current tab:', slug);
       console.log('[tabs] Template instance calling onChange:', template);
+    }
+  });
+
+  Template.body.events({  
+    'click button.ask': function(event, template) {
+      Session.set('activeModal', true);
+    },
+
+    "submit .addPoll": function (event) {
+    // This function is called when the new task form is submitted
+
+      var text = event.target.text.value;
+      var duration = event.target.duration.value;
+      var askedBy = event.target.askedBy.value;
+
+      polls.insert({
+        text: text,
+        createdAt: new Date() // current time
+      });
+
+      // Clear form
+      event.target.text.value = "";
+
+      // Prevent default form submit
+      return false;
+    }
+  });
+
+  Template.voteForm.events({
+        'submit form': function(event){
+            event.preventDefault();
+            console.log("Form submitted");
+
+            var pollId = event.target.pollId.value;
+            var decision = event.target.decision.value; 
+            var visited = Meteor.cookie.get(pollId);
+            console.log(visited);
+            if (visited != null) {
+                console.log("You voted!");
+                return;
+            }
+            var vote = {
+                pollId: pollId,
+                decision: decision
+            };
+            console.log(vote);
+            Meteor.cookie.set(pollId, 1);
+            // vote(event.target.decision);
+        }
+  });
+
+  Template.askModal.helpers({  
+    activeModal: function() {
+      return Session.get('activeModal');
     }
   });
 
@@ -45,11 +106,31 @@ if (Meteor.isClient) {
       return Session.get('activeTab'); // Returns "people", "places", or "things".
     }
   });
+
+    
+
 }
 
 if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
+    Meteor.startup(function () {
+        // code to run on server at startup
+    });
 }
 
+// server methods
+Meteor.methods({
+    vote: function (answer) {
+        
+        // // Make sure the user is logged in before inserting a task
+        // if (! Meteor.userId()) {
+        //   throw new Meteor.Error("not-authorized");
+        // }
+        
+        // Tasks.insert({
+        //   text: text,
+        //   createdAt: new Date(),
+        //   owner: Meteor.userId(),
+        //   username: Meteor.user().username
+        // });
+    }
+});

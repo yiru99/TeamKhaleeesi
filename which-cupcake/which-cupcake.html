@@ -7,9 +7,11 @@
 	<script>try{Typekit.load();}catch(e){}</script>
 </head>
 
+
 <body>
 	<div class = "container">
 		<header>
+<<<<<<< HEAD
 			<div class="row">
 				<div class="eight columns">
 	  				<h1>Which cupcake?</h1>
@@ -20,6 +22,15 @@
 	            	</button>
 	  			</div>
 			</div>
+=======
+  			<h1>Which cupcake?</h1>
+            <button class="ask" data-modal-template="askModal">
+                 <i class="fa fa-plus" style="padding-right:5px;"></i>Ask
+            </button>
+            {{>askModal}}
+
+
+>>>>>>> d508559922fa238158c92bd5fa92888e3284d515
 		</header>
 		
 		<!-- Use `name` to add a custom class to the outer container -->
@@ -68,6 +79,8 @@
 
 		{{/basicTabs}}
 	</div>
+
+        {{> voteForm}}
 </body>
 
 <template name="poll">
@@ -107,4 +120,22 @@
 	</li>
 </template>
 
+<template name="askModal">  
+  {{#if activeModal}}
+    <form class="addPoll">
+      <input type="text" name="text" placeholder="Type to add new poll" />
+      <input type="number" name="duration" placeholder="Set a duration for your poll"/> <p>minutes</p>
+      <br>
+      <p>Asked By</p><input type="text" name="askedBy"/> 
+    </form>
+  {{/if}}
+</template>
+
+<template name="voteForm">
+  <form>
+    <input type="text" name="pollId">
+    <input type="text" name="decision">
+    <input type="submit" value="Vote">
+  </form>
+</template>
 
