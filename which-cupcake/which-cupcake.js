@@ -6,7 +6,6 @@
 */
 
 polls = new Mongo.Collection("polls");
-votes = new Mongo.Collection("votes");
 var imageStore = new FS.Store.GridFS("images");
 
 Images = new FS.Collection("images", {
@@ -31,7 +30,6 @@ Images.allow({
  }
 });
 
-
 if (Meteor.isClient) {
   Template.body.helpers({
     polls:function(){
@@ -43,9 +41,48 @@ if (Meteor.isClient) {
   });
 
   Template.poll.events({
-    'click.poll': function(event, template){
-      template.$(".content").toggle();
-    }
+    'click .question': function(event, template){
+        template.$(".content").toggle();
+    },
+      'click .vote1': function(event, template) {
+          console.log("Vote1 submitted");
+
+          var visited = Meteor.cookie.get("which-cupcake"+this._id);
+          console.log(visited);
+          if (visited != null) {
+              alert("You voted already!"); 
+              return;
+          }
+
+          var votesByPollId = polls.find(this._id);
+          if (isNaN(this.vote1)) this.vote1 = 0;
+          console.log("vote1 before: "+this.vote1);
+          polls.update(this._id, {$set: {vote1: this.vote1+1}});
+          console.log("vote1 after: "+this.vote1);
+          console.log("updated poll " + this._id);
+          // console.log(polls);
+          // console.log(polls.find(this._id));
+          Meteor.cookie.set("which-cupcake"+this._id, 1);
+      },
+      'click .vote2': function(event, template) {
+          console.log("Vote2 submitted");
+
+          var visited = Meteor.cookie.get("which-cupcake"+this._id);
+          console.log(visited);
+          if (visited != null) {
+              alert("You voted already!"); 
+              return;
+          }
+
+          var votesByPollId = polls.find(this._id);
+          if (isNaN(this.vote2)) this.vote2 = 0;
+          console.log("vote2 before: "+this.vote2);
+          polls.update(this._id, {$set: {vote2: this.vote2+1}});
+          console.log("vote2 after: "+this.vote2);
+          // console.log("updated poll " + this._id);
+          // console.log(polls);
+          Meteor.cookie.set("which-cupcake"+this._id, 1);
+      }
   });
 
   ReactiveTabs.createInterface({
@@ -207,21 +244,3 @@ if (Meteor.isServer) {
         // code to run on server at startup
     });
 }
-
-// server methods
-Meteor.methods({
-    vote: function (answer) {
-        
-        // // Make sure the poll is logged in before inserting a task
-        // if (! Meteor.pollId()) {
-        //   throw new Meteor.Error("not-authorized");
-        // }
-        
-        // Tasks.insert({
-        //   text: text,
-        //   createdAt: new Date(),
-        //   owner: Meteor.pollId(),
-        //   pollname: Meteor.poll().pollname
-        // });
-    }
-});
