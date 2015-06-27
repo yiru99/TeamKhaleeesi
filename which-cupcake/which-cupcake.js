@@ -17,7 +17,7 @@ Images.deny({
  update: function(){
  return false;
  }
- });
+});
 
 Images.allow({
  insert: function(){
@@ -72,10 +72,8 @@ if (Meteor.isClient) {
                // handle error
             } else {
                // handle success depending what you need to do
-              var imagesURL = {
-                "askModal.image": "http://localhost:3000/cfs/files/images/" + fileObj._id
-              };
-              Session.set('option1',fileObj.url());
+              var imagesURL =  "http://localhost:3000/cfs/files/images/" + fileObj._id;
+              Session.set('option1',imagesURL);
             }
           });
        });
@@ -153,6 +151,9 @@ if (Meteor.isClient) {
     },
     option1: function(){
       return Session.get('option1'); 
+    },
+    option2: function(){
+      return Session.get('option2'); 
     }
   });
 
