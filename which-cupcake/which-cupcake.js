@@ -190,8 +190,7 @@ if (Meteor.isClient) {
     timeLeft : function() {  
 	return Math.floor((this.endTime - new Date())/60000)
     }
-  });  
-
+  });
 }
 
 if (Meteor.isServer) {
