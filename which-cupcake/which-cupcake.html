@@ -1,6 +1,6 @@
 <head>
     <title>which-cupcake</title>
-    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.3.0/animate.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css">
     <script src="//use.typekit.net/zjr2ygg.js"></script>
@@ -13,8 +13,8 @@
 		<header>
 
 			<div class="row">
-				<div class="eight columns">
-	  				<h1>Which cupcake?</h1>
+				<div class="col-lg-6">
+	  				<a href="/"><h1 class="logo-title"><!-- <span class="rainbow"> -->Which cupcake?<!-- </span> --></h1></a>
 	  			</div>
 	  			<div class="four columns btn-ask-column">
 	  				<button class="ask" data-modal-template="askModal">
@@ -23,26 +23,10 @@
 	            	{{>askModal}}
 	  			</div>
 			</div>
-			
 
 		</header>
-		
-		<!-- Use `name` to add a custom class to the outer container -->
-  	
 
-  		{{#basicTabs name="homepageTabs" tabs=tabs}}
-
-
-    <!--
-      There are two ways to define content for your tabs:
-
-      1. Wrap each tabbed section in a blank `<div></div>`.
-         Sections must correspond with the order of the tabs you specified.
-
-      2. Wrap each tabbed section in the provided block helper (RECOMMENDED!).
-         `{{#tabContent slug="nameOfSlug"}} ... {{/tabContent}}`
-         These can be defined in any order you like.
-    -->
+		{{#basicTabs name="homepageTabs" tabs=tabs}}
     	{{#tabContent slug="openpolls"}}
 				<ul>
 			    {{#each polls}}
@@ -62,15 +46,6 @@
 			    {{/each}}
 			  </ul>
 			{{/tabContent}}
-
-			{{#tabContent slug="mypolls"}}
-				<ul>
-			    {{#each polls}}
-			    	{{> poll}}	 
-			    {{/each}}
-			  </ul>
-			{{/tabContent}}
-
 		{{/basicTabs}}
 	</div>
 
@@ -79,37 +54,43 @@
 
 <template name="poll">
 	<li class="row card">
-		<div>
+		<div class="card-content">
 			<div class="question-title">
 				<h2 class="question">{{text}}</h2>
 			</div>
 	  		
 	  		<div class="content">
 		  		<div>
-			  		<h5 class="time">{{createdAt}}</h5>
-			  		<h5 class="askedBy">{{askedBy}} asked this question</h5>
+			  		<h5><span class="askedBy">{{askedBy}}</span> asked this question on <span class="time">{{createdAt}}</span></h5>
+			  		<h5>Status:{{status}}</h5>
+					<h5>There are {{timeLeft}} left to vote</h5>
 		  		</div>
 				
 			  	<div class="option-row row">
-					<div class="option one-half column">
-						<div class="option-img"></div>
-						<div>
-							<h4>Option 1: {{option1}}</h4>
-					  		<button class="vote1"> Vote </button>
-						</div>
+					<div class="option col-sm-6 vote1">
+						<a>
+							<div class="option-img">
+								<img class="img-responsive" src="http://bit.ly/1JdBFga">
+							</div>
+							<div class="option-text">
+								<h4>{{option1}}</h4>
+						  		<!-- <button class="vote1"> Vote </button> -->
+							</div>
+						</a>
 				  	</div>
-				  	<div class="option one-half column">
-				  		<li>Option 2: {{option2}}</li>
-				  		<button class="vote2"> Vote </button>
+				  	<div class="option col-sm-6 vote2">
+				  		<a>
+					  		<div class="option-img">
+								<img class="img-responsive" src="http://bit.ly/1KhLjzU">
+							</div>
+					  		<div class="option-text">
+					  			<h4>{{option2}}</h4>
+					  			<!-- <button class="vote2"> Vote </button> -->
+					  		</div>
+				  		</a>
 				  	</div>
 			  	</div>
-
-			  	<div>
-					<h5>Status:{{status}}</h5>
-					<h5>There are {{timeLeft}} minutes left to vote.</h5>
-				</div>
 	  		</div>
-	  		
 		</div>
 	</li>
 </template>
