@@ -107,7 +107,12 @@ if (Meteor.isClient) {
     }
   });
 
-    
+  Template.poll.helpers({
+    //timeLeft :  Math.floor((this.endTime - new Date())/60000)
+    timeLeft : function() {  
+	return Math.floor((this.endTime - new Date())/60000)
+    }
+  });  
 
 }
 
