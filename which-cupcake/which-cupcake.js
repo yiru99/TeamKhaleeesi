@@ -6,6 +6,7 @@
 */
 
 polls = new Mongo.Collection("polls");
+votes = new Mongo.Collection("votes");
 var imageStore = new FS.Store.GridFS("images");
 
 Images = new FS.Collection("images", {
@@ -30,6 +31,7 @@ Images.allow({
  }
 });
 
+
 if (Meteor.isClient) {
   Template.body.helpers({
     polls:function(){
@@ -41,6 +43,7 @@ if (Meteor.isClient) {
   });
 
   Template.poll.events({
+
     'click .question': function(event, template){
         template.$(".content").toggle();
     },
@@ -146,8 +149,7 @@ if (Meteor.isClient) {
         createdAt: new Date(),
         option1: option1,
         option2: option2,
-        status: "open",
-	endTime: new Date(new Date().getTime() + parseInt(duration)*60000)
+        status: "open"
       });
 
       // Clear form
@@ -159,6 +161,7 @@ if (Meteor.isClient) {
       return false;
     }
   });
+
 
   Template.askModal.helpers({  
     activeModal: function() {
@@ -200,21 +203,12 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.poll.created = function () {
-      this.timeLeft = new ReactiveVar(0);
-  };
-
   Template.poll.helpers({
-    timeLeft : function () {  
-	Template.instance().timeLeft.set(Math.floor((this.endTime - new Date())/60000));
-	if (Template.instance().timeLeft.get() <= 0) {
-	    polls.update(this._id, {status: "Closed"});
-	    Template.instance().timeLeft.set(Math.floor(0));
-        }
-	return Template.instance().timeLeft.get();
+    //timeLeft :  Math.floor((this.endTime - new Date())/60000)
+    timeLeft : function() {  
+	return Math.floor((this.endTime - new Date())/60000)
     }
-  }); 
-
+  });
 }
 
 if (Meteor.isServer) {
@@ -222,3 +216,22 @@ if (Meteor.isServer) {
         // code to run on server at startup
     });
 }
+
+// server methods
+Meteor.methods({
+    vote: function (answer) {
+        
+        // // Make sure the poll is logged in before inserting a task
+        // if (! Meteor.pollId()) {
+        //   throw new Meteor.Error("not-authorized");
+        // }
+        
+        // Tasks.insert({
+        //   text: text,
+        //   createdAt: new Date(),
+        //   owner: Meteor.pollId(),
+        //   pollname: Meteor.poll().pollname
+        // });
+    }
+});
+
