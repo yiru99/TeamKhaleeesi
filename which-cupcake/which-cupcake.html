@@ -61,8 +61,9 @@
 	  		
 	  		<div class="content">
 		  		<div>
-			  		<h5><span class="askedBy">{{askedBy}}</span> asked this question on <span class="time">{{createdAt}}</span></h5>
-			  		<h5>Status:{{status}}</h5>
+
+			  		<h5><span class="askedBy">Asked By {{askedBy}}</span> </h5>
+			  		
 					<h5>There are {{timeLeft}} minutes left to vote</h5>
 		  		</div>
 				
@@ -74,7 +75,8 @@
 							</div>
 							<div class="option-text">
 								<h4>{{option1}}</h4>
-						  		<!-- <button class="vote1"> Vote </button> -->
+                                                                <div>{{vote1}}</div>
+						  		<button class="vote1"> Vote </button>
 							</div>
 						</a>
 				  	</div>
@@ -85,7 +87,8 @@
 							</div>
 					  		<div class="option-text">
 					  			<h4>{{option2}}</h4>
-					  			<!-- <button class="vote2"> Vote </button> -->
+                                                                <div>{{vote2}}</div>
+					  			<button class="vote2"> Vote </button>
 					  		</div>
 				  		</a>
 				  	</div>
