@@ -17,6 +17,13 @@ if (Meteor.isClient) {
       return status == "open"
     }
   });
+
+  Template.poll.events({
+    'click.poll': function(event, template){
+      template.$(".content").toggle();
+    }
+  });
+
   ReactiveTabs.createInterface({
     template: 'basicTabs',
     onChange: function (slug, template) {
@@ -85,7 +92,9 @@ if (Meteor.isClient) {
     tabs: function () {
       // Every tab object MUST have a name and a slug!
       return [
-        { name: 'Open polls', slug: 'openpolls' },
+        { name: 'Open polls', slug: 'openpolls', onRender: function(template){
+            $(".content").hide();
+         } },
         { name: 'Closed polls', slug: 'closedpolls' },
         { name: 'My polls', slug: 'mypolls', onRender: function(template) {
           // This callback runs every time this specific tab's content renders.
