@@ -7,32 +7,32 @@
 	<script>try{Typekit.load();}catch(e){}</script>
 </head>
 
+
 <body>
 	<div class = "container">
 		<header>
+
 			<div class="row">
 				<div class="col-lg-6">
 	  				<a href="/"><h1 class="logo-title"><!-- <span class="rainbow"> -->Which cupcake?<!-- </span> --></h1></a>
+				<div class="eight columns">
+	  				<h1>Which cupcake?</h1>
+	  			</div>
+	  			<div class="four columns btn-ask-column">
+	  				<button class="ask" data-modal-template="askModal">
+	                	<i class="fa fa-plus" style="padding-right:5px;"></i>Ask
+	            	</button>
+	            	{{>askModal}}
 	  			</div>
 			</div>
 		</header>
+		
 		<div>
 			<button class="btn-ask btn">
         		<i class="fa fa-plus" style="padding-right:5px;"></i>Ask
     		</button>
 		</div>
 		{{#basicTabs name="homepageTabs" tabs=tabs}}
-	<!-- Use `name` to add a custom class to the outer container -->
-    <!--
-      There are two ways to define content for your tabs:
-
-      1. Wrap each tabbed section in a blank `<div></div>`.
-         Sections must correspond with the order of the tabs you specified.
-
-      2. Wrap each tabbed section in the provided block helper (RECOMMENDED!).
-         `{{#tabContent slug="nameOfSlug"}} ... {{/tabContent}}`
-         These can be defined in any order you like.
-    -->
     	{{#tabContent slug="openpolls"}}
 				<ul>
 			    {{#each polls}}
@@ -52,17 +52,10 @@
 			    {{/each}}
 			  </ul>
 			{{/tabContent}}
-
-<!-- 			{{#tabContent slug="mypolls"}}
-				<ul>
-			    {{#each polls}}
-			    	{{> poll}}	 
-			    {{/each}}
-			  </ul>
-			{{/tabContent}} -->
-
 		{{/basicTabs}}
 	</div>
+
+        {{> voteForm}}
 </body>
 
 <template name="poll">
@@ -108,4 +101,31 @@
 	</li>
 </template>
 
+<template name="askModal">  
+  {{#if activeModal}}
+    <form class="addPoll">
+      <input type="text" name="text" placeholder="Type to add new poll" />
+      <input type="number" name="duration" placeholder="Set a duration for your poll"/> <p>minutes</p>
+      <br>
+      <p>Option 1</p><input type="file" name="option1" class="imageUpload1">
+      {{#if option1}}
+      	<a href="{{option1}}"> <img src = {{option1}} height="100%" width="100" alt=""></a>
+      {{/if}}
+      <p>Option 2</p><input type="file" name="option2" class="imageUpload2">
+      {{#if option2}}
+      	<img src = {{option2}} height="100%" width="100">
+      {{/if}}
+      <p>Asked By</p><input type="text" name="askedBy"/> 
+      <input type="submit" value="Submit">
+    </form>
+  {{/if}}
+</template>
+
+<template name="voteForm">
+  <form>
+    <input type="text" name="pollId">
+    <input type="text" name="decision">
+    <input type="submit" value="Vote">
+  </form>
+</template>
 

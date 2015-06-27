@@ -56,8 +56,6 @@ li {
 
 .card {
     background: #fff;
-    border-top: 2px solid #D68189;
-    padding: 20px;
 }
 
 .card-content {
@@ -87,8 +85,7 @@ li {
     font-weight: 600;
 }
 
-.btn-ask {
-    text-align: right;
+.ask {
     margin-top: 10px;
     text-align: right;
     background-color: red;

@@ -8,3 +8,6 @@ meteor-platform
 autopublish
 insecure
 templates:tabs
+ostrio:cookies
+cfs:standard-packages
+cfs:gridfs
