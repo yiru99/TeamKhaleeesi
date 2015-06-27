@@ -10,20 +10,53 @@
 		<button class="ask">
 			Ask Which-Cupcake
 		</button>
+		<!-- Use `name` to add a custom class to the outer container -->
+  	{{#basicTabs name="homepageTabs" tabs=tabs}}
+    <!--
+      There are two ways to define content for your tabs:
 
-		<ul>
-	    {{#each pools}}
-	      {{> pool}}
-	    {{/each}}
-	  </ul>
+      1. Wrap each tabbed section in a blank `<div></div>`.
+         Sections must correspond with the order of the tabs you specified.
+
+      2. Wrap each tabbed section in the provided block helper (RECOMMENDED!).
+         `{{#tabContent slug="nameOfSlug"}} ... {{/tabContent}}`
+         These can be defined in any order you like.
+    -->
+    	{{#tabContent slug="openPools"}}
+				<ul>
+			    {{#each pools}}
+			      {{> pool}}
+			    {{/each}}
+			  </ul>
+			{{/tabContent}}
+
+			{{#tabContent slug="closedPools"}}
+				<ul>
+			    {{#each pools}}
+			      {{> pool}}
+			    {{/each}}
+			  </ul>
+			{{/tabContent}}
+
+			{{#tabContent slug="myPools"}}
+				<ul>
+			    {{#each pools}}
+			      {{> pool}} 
+			    {{/each}}
+			  </ul>
+			{{/tabContent}}
+
+		{{/basicTabs}}
 	</div>
 </body>
 
 <template name="pool">
-  <li>{{text}}</li>
-  <li>{{createdAt}}</li>
-  <li>{{status}}</li>
-  <li>{{askedBy}}</li>
+  <li>Question:{{text}}</li>
+  <li>Created at:{{createdAt}}</li>
+  <li>Status:{{status}}</li>
+  <li>Asked by:{{askedBy}}</li>
+  <li>There are {{timeLeft}} left to vote</li>
+  <br>
 </template>
 
 
