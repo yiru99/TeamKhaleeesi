@@ -109,7 +109,8 @@ if (Meteor.isClient) {
         createdAt: new Date(),
         option1: option1,
         option2: option2,
-        status: "open"
+        status: "open",
+	endTime: new Date(new Date().getTime() + parseInt(duration)*60000)
       });
 
       // Clear form
