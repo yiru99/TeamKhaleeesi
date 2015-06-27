@@ -26,30 +26,30 @@
          `{{#tabContent slug="nameOfSlug"}} ... {{/tabContent}}`
          These can be defined in any order you like.
     -->
-    	{{#tabContent slug="openPools"}}
+    	{{#tabContent slug="openpolls"}}
 				<ul>
-			    {{#each pools}}
+			    {{#each polls}}
 			    	{{#if isOpen status}}
-			      	{{> pool}}
+			      	{{> poll}}
 			    	{{/if}}
 			    {{/each}}
 			  </ul>
 			{{/tabContent}}
 
-			{{#tabContent slug="closedPools"}}
+			{{#tabContent slug="closedpolls"}}
 				<ul>
-			    {{#each pools}}
+			    {{#each polls}}
 			    	{{#unless isOpen status}}
-			      	{{> pool}}
+			      	{{> poll}}
 			    	{{/unless}} 
 			    {{/each}}
 			  </ul>
 			{{/tabContent}}
 
-			{{#tabContent slug="myPools"}}
+			{{#tabContent slug="mypolls"}}
 				<ul>
-			    {{#each pools}}
-			    	{{> pool}}	 
+			    {{#each polls}}
+			    	{{> poll}}	 
 			    {{/each}}
 			  </ul>
 			{{/tabContent}}
@@ -58,7 +58,7 @@
 	</div>
 </body>
 
-<template name="pool">
+<template name="poll">
   <li>Question:{{text}}</li>
   <li>Created at:{{createdAt}}</li>
   <li>Option 1: {{option1}}</li>
