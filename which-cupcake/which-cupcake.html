@@ -25,7 +25,9 @@
     	{{#tabContent slug="openPools"}}
 				<ul>
 			    {{#each pools}}
-			      {{> pool}}
+			    	{{#if isOpen status}}
+			      	{{> pool}}
+			    	{{/if}}
 			    {{/each}}
 			  </ul>
 			{{/tabContent}}
@@ -33,7 +35,9 @@
 			{{#tabContent slug="closedPools"}}
 				<ul>
 			    {{#each pools}}
-			      {{> pool}}
+			    	{{#unless isOpen status}}
+			      	{{> pool}}
+			    	{{/unless}} 
 			    {{/each}}
 			  </ul>
 			{{/tabContent}}
@@ -41,7 +45,7 @@
 			{{#tabContent slug="myPools"}}
 				<ul>
 			    {{#each pools}}
-			      {{> pool}} 
+			    	{{> pool}}	 
 			    {{/each}}
 			  </ul>
 			{{/tabContent}}

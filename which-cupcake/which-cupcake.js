@@ -5,6 +5,9 @@ if (Meteor.isClient) {
   Template.body.helpers({
     pools:function(){
       return Pools.find({});
+    },
+    isOpen: function(status){
+      return status == "open"
     }
   });
   ReactiveTabs.createInterface({
