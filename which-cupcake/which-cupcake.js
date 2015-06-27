@@ -1,4 +1,12 @@
+/*
+  answer: {
+  pollId: pollId, (string)
+  decision: decision (0 or 1)
+  }
+*/
+
 polls = new Mongo.Collection("polls");
+votes = new Mongo.Collection("votes");
 
 if (Meteor.isClient) {
   Template.body.helpers({
@@ -44,6 +52,29 @@ if (Meteor.isClient) {
     }
   });
 
+  Template.voteForm.events({
+        'submit form': function(event){
+            event.preventDefault();
+            console.log("Form submitted");
+
+            var pollId = event.target.pollId.value;
+            var decision = event.target.decision.value; 
+            var visited = Meteor.cookie.get(pollId);
+            console.log(visited);
+            if (visited != null) {
+                console.log("You voted!");
+                return;
+            }
+            var vote = {
+                pollId: pollId,
+                decision: decision
+            };
+            console.log(vote);
+            Meteor.cookie.set(pollId, 1);
+            // vote(event.target.decision);
+        }
+  });
+
   Template.askModal.helpers({  
     activeModal: function() {
       return Session.get('activeModal');
@@ -75,11 +106,31 @@ if (Meteor.isClient) {
       return Session.get('activeTab'); // Returns "people", "places", or "things".
     }
   });
+
+    
+
 }
 
 if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
+    Meteor.startup(function () {
+        // code to run on server at startup
+    });
 }
 
+// server methods
+Meteor.methods({
+    vote: function (answer) {
+        
+        // // Make sure the user is logged in before inserting a task
+        // if (! Meteor.userId()) {
+        //   throw new Meteor.Error("not-authorized");
+        // }
+        
+        // Tasks.insert({
+        //   text: text,
+        //   createdAt: new Date(),
+        //   owner: Meteor.userId(),
+        //   username: Meteor.user().username
+        // });
+    }
+});

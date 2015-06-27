@@ -14,6 +14,8 @@
                  <i class="fa fa-plus" style="padding-right:5px;"></i>Ask
             </button>
             {{>askModal}}
+
+
 		</header>
 		
 		<!-- Use `name` to add a custom class to the outer container -->
@@ -58,6 +60,8 @@
 
 		{{/basicTabs}}
 	</div>
+
+        {{> voteForm}}
 </body>
 
 <template name="poll">
@@ -82,5 +86,13 @@
       <p>Asked By</p><input type="text" name="askedBy"/> 
     </form>
   {{/if}}
+</template>
+
+<template name="voteForm">
+  <form>
+    <input type="text" name="pollId">
+    <input type="text" name="decision">
+    <input type="submit" value="Vote">
+  </form>
 </template>
 
