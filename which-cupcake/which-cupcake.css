@@ -1,5 +1,5 @@
 body {
-    background-color: #F9BA15;
+    background-color: #f0f0f0;
     margin-top: 0px;
 }
 
@@ -9,7 +9,6 @@ ul {
 
 .container {
     font-family: "helvetica", sans-serif;
-    background: #fff;
     padding: 0px 30px;
 }
 
@@ -20,6 +19,7 @@ ul {
 	}
 }
 */
+
 .card h5 {
     font-size: 1.5rem;
 }
@@ -36,27 +36,26 @@ ul {
 
 .basicTabs-container .tabs-content-container,
 .dynamicTabs-container .tabs-content-container ul li {
-    padding: 10px;
     list-style: none;
 }
 
 .card {
-/*    border: 1px solid red;
-*/}
-
-.option-row {
-    padding: 10px 0px;
+    background: #fff;
+	border-bottom: 1px solid #ddd;
+	padding: 20px;
 }
 
-.option {
-/*    border: 1px solid red;
-*/}
+.option-row {
+    padding: 0px;
+}
 
-.option-img {
-    padding: 15px;
-/*    border: 1px solid red;
-*/    min-height: 200px;
-    background-image: url('http://loremflickr.com/320/240?random=1');
+.option-img img  {
+	max-width: 300px; 
+	max-height: 300px;
+}
+
+.option-img img:hover {
+	border: 2px solid blue;
 }
 
 .question {
