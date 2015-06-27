@@ -185,12 +185,20 @@ if (Meteor.isClient) {
     }
   });
 
+  Template.poll.created = function () {
+      this.timeLeft = new ReactiveVar(0);
+  };
+
   Template.poll.helpers({
-    //timeLeft :  Math.floor((this.endTime - new Date())/60000)
-    timeLeft : function() {  
-	return Math.floor((this.endTime - new Date())/60000)
+    timeLeft : function () {  
+	Template.instance().timeLeft.set(Math.floor((this.endTime - new Date())/60000));
+	if (Template.instance().timeLeft.get() <= 0) {
+	    polls.update(this._id, {status: "Closed"});
+	    Template.instance().timeLeft.set(Math.floor(0));
+        }
+	return Template.instance().timeLeft.get();
     }
-  });  
+  }); 
 
 }
 
