@@ -1,24 +1,39 @@
 body {
-    background-color: #f0f0f0;
+	font-family: "aktiv-grotesk";
+    background-color: #fff;
     margin-top: 0px;
 }
 
-ul {
-	list-style: none;
+.logo-title {
+    font-family: "bello-pro", serif;
+    color: #E94E77;
+}
+
+.logo-title a:hover {
+	text-decoration: none;
+}
+
+.logo-title a:after {
+	text-decoration: none;
+}
+
+.rainbow {
+  background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+  background-image: gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+  color:transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+ul,
+li {
+    list-style: none;
+    padding:0px;
 }
 
 .container {
-    font-family: "helvetica", sans-serif;
     padding: 0px 30px;
 }
-
-/*@media (min-width: 400px) {
-	.container {
-		margin:0px;
-		max-width: 100%;
-	}
-}
-*/
 
 .card h5 {
     font-size: 1.5rem;
@@ -41,35 +56,66 @@ ul {
 
 .card {
     background: #fff;
-	border-bottom: 1px solid #ddd;
-	padding: 20px;
+}
+
+.card-content {
+	padding: 10px 0px 30px 0px;
 }
 
 .option-row {
     padding: 0px;
 }
 
-.option-img img  {
-	max-width: 300px; 
-	max-height: 300px;
+.option-img img {
+    max-width: 300px;
+    max-height: 300px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.option-img img:hover {
-	border: 2px solid blue;
+.option-text {
+    text-align: center;
+}
+
+.option:hover {
+    border: 2px solid blue;
 }
 
 .question {
-    font-weight: 400;
-}
-
-.btn-ask-column {
-    text-align: right;
+    font-weight: 600;
 }
 
 .ask {
     margin-top: 10px;
     text-align: right;
     background-color: red;
+}
+
+.askedBy,
+.time {
+    font-weight: 600;
+}
+
+.basicTabs-container .tabs-list .tab-item,
+.dynamicTabs-container .tabs-list .tab-item {
+    text-transform: uppercase;
+    position: relative;
+    top: -90px;
+    left: 250px;
+    font-size: 1.6rem;
+    color: #aaa;
+    font-weight: 300;
+}
+
+.basicTabs-container .tabs-list .tab-item.active,
+.dynamicTabs-container .tabs-list .tab-item.active {
+    color: #E94E77;
+    border-bottom: 1px solid #E94E77;
+}
+
+.basicTabs-container .tabs-list .tab-item.active,
+.dynamicTabs-container .tabs-list .tab-item.active {
+    border: 0px;
 }
 
 .content{
