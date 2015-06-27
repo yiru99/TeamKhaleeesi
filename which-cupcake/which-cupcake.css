@@ -1,27 +1,5 @@
 body {
-    background-color: #F9BA15;
-    margin-top: 0px;
-}
-
-ul {
-	list-style: none;
-}
-
-.container {
-    font-family: "helvetica", sans-serif;
-    background: #fff;
-    padding: 0px 30px;
-}
-
-/*@media (min-width: 400px) {
-	.container {
-		margin:0px;
-		max-width: 100%;
-	}
-}
-*/
-.card h5 {
-    font-size: 1.5rem;
+    font-family: sans-serif;
 }
 
 .tab-list {
@@ -31,44 +9,5 @@ ul {
 
 .basicTabs-container .tabs-content-container,
 .dynamicTabs-container .tabs-content-container {
-    border: none;
-}
-
-.basicTabs-container .tabs-content-container,
-.dynamicTabs-container .tabs-content-container ul li {
-    padding: 0px;
-    list-style: none;
-}
-
-.card {
-/*    border: 1px solid red;
-*/}
-
-.option-row {
-    padding: 10px 0px;
-}
-
-.option {
-/*    border: 1px solid red;
-*/}
-
-.option-img {
-    padding: 15px;
-/*    border: 1px solid red;
-*/    min-height: 200px;
-    background-image: url('http://loremflickr.com/320/240?random=1');
-}
-
-.question {
-    font-weight: 400;
-}
-
-.btn-ask-column {
-    text-align: right;
-}
-
-.btn-ask {
-    margin-top: 10px;
-    text-align: right;
-    background-color: red;
+	border: none;
 }

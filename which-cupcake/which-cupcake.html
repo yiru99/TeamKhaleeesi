@@ -1,34 +1,21 @@
 <head>
-	<meta name="viewport" content="initial-scale=1">
     <title>which-cupcake</title>
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.3.0/animate.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css">
-    <script src="//use.typekit.net/zjr2ygg.js"></script>
-	<script>try{Typekit.load();}catch(e){}</script>
 </head>
 
 <body>
 	<div class = "container">
 		<header>
-			<div class="row">
-				<div class="eight columns">
-	  				<h1>Which cupcake?</h1>
-	  			</div>
-	  			<div class="four columns btn-ask-column">
-	  				<button class="btn-ask">
-	                	<i class="fa fa-plus" style="padding-right:5px;"></i>Ask
-	            	</button>
-	  			</div>
-			</div>
+  			<h1>Which cupcake?</h1>
+            <button class="ask">
+                 <i class="fa fa-plus" style="padding-right:5px;"></i>Ask
+            </button>
 		</header>
 		
 		<!-- Use `name` to add a custom class to the outer container -->
-  	
-
-  		{{#basicTabs name="homepageTabs" tabs=tabs}}
-
-
+  	{{#basicTabs name="homepageTabs" tabs=tabs}}
     <!--
       There are two ways to define content for your tabs:
 
@@ -72,40 +59,16 @@
 </body>
 
 <template name="poll">
-	<li class="row card">
-		<div>
-			<div class="question-title">
-				<h2 class="question">{{text}}</h2>
-			</div>
-	  		
-	  		<div class="content">
-		  		<div>
-			  		<h5 class="time">{{createdAt}}</h5>
-			  		<h5 class="askedBy">{{askedBy}} asked this question</h5>
-		  		</div>
-				
-			  	<div class="option-row row">
-					<div class="option one-half column">
-						<div class="option-img"></div>
-						<div>
-							<h4>Option 1: {{option1}}</h4>
-					  		<button class="vote1"> Vote </button>
-						</div>
-				  	</div>
-				  	<div class="option one-half column">
-				  		<li>Option 2: {{option2}}</li>
-				  		<button class="vote2"> Vote </button>
-				  	</div>
-			  	</div>
-
-			  	<div>
-					<h5>Status:{{status}}</h5>
-					<h5>There are {{timeLeft}} left to vote</h5>
-				</div>
-	  		</div>
-	  		
-		</div>
-	</li>
+  <li>Question:{{text}}</li>
+  <li>Created at:{{createdAt}}</li>
+  <li>Option 1: {{option1}}</li>
+  <button class="vote1"> Vote </button>
+  <li>Option 2: {{option2}}</li>
+  <button class="vote2"> Vote </button>
+  <li>Status:{{status}}</li>
+  <li>Asked by:{{askedBy}}</li>
+  <li>There are {{timeLeft}} left to vote</li>
+  <br>
 </template>
 
 
