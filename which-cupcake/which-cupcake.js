@@ -160,29 +160,6 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.voteForm.events({
-        'submit form': function(event){
-            event.preventDefault();
-            console.log("Form submitted");
-
-            var pollId = event.target.pollId.value;
-            var decision = event.target.decision.value; 
-            var visited = Meteor.cookie.get(pollId);
-            console.log(visited);
-            if (visited != null) {
-                console.log("You voted!");
-                return;
-            }
-            var vote = {
-                pollId: pollId,
-                decision: decision
-            };
-            console.log(vote);
-            Meteor.cookie.set(pollId, 1);
-            // vote(event.target.decision);
-        }
-  });
-
   Template.askModal.helpers({  
     activeModal: function() {
       return Session.get('activeModal');
