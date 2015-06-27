@@ -1,6 +1,6 @@
 <head>
     <title>which-cupcake</title>
-    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.3.0/animate.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css">
     <script src="//use.typekit.net/zjr2ygg.js"></script>
@@ -11,23 +11,18 @@
 	<div class = "container">
 		<header>
 			<div class="row">
-				<div class="eight columns">
-	  				<h1>Which cupcake?</h1>
-	  			</div>
-	  			<div class="four columns btn-ask-column">
-	  				<button class="btn-ask">
-	                	<i class="fa fa-plus" style="padding-right:5px;"></i>Ask
-	            	</button>
+				<div class="col-lg-6">
+	  				<a href="/"><h1 class="logo-title"><!-- <span class="rainbow"> -->Which cupcake?<!-- </span> --></h1></a>
 	  			</div>
 			</div>
 		</header>
-		
-		<!-- Use `name` to add a custom class to the outer container -->
-  	
-
-  		{{#basicTabs name="homepageTabs" tabs=tabs}}
-
-
+		<div>
+			<button class="btn-ask btn">
+        		<i class="fa fa-plus" style="padding-right:5px;"></i>Ask
+    		</button>
+		</div>
+		{{#basicTabs name="homepageTabs" tabs=tabs}}
+	<!-- Use `name` to add a custom class to the outer container -->
     <!--
       There are two ways to define content for your tabs:
 
@@ -58,13 +53,13 @@
 			  </ul>
 			{{/tabContent}}
 
-			{{#tabContent slug="mypolls"}}
+<!-- 			{{#tabContent slug="mypolls"}}
 				<ul>
 			    {{#each polls}}
 			    	{{> poll}}	 
 			    {{/each}}
 			  </ul>
-			{{/tabContent}}
+			{{/tabContent}} -->
 
 		{{/basicTabs}}
 	</div>
@@ -72,45 +67,43 @@
 
 <template name="poll">
 	<li class="row card">
-		<div>
+		<div class="card-content">
 			<div class="question-title">
 				<h2 class="question">{{text}}</h2>
 			</div>
 	  		
 	  		<div class="content">
 		  		<div>
-			  		<h5 class="time">{{createdAt}}</h5>
-			  		<h5 class="askedBy">{{askedBy}} asked this question</h5>
+			  		<h5><span class="askedBy">{{askedBy}}</span> asked this question on <span class="time">{{createdAt}}</span></h5>
 			  		<h5>Status:{{status}}</h5>
 					<h5>There are {{timeLeft}} left to vote</h5>
 		  		</div>
 				
 			  	<div class="option-row row">
-					<div class="option one-half column">
+					<div class="option col-sm-6 vote1">
 						<a>
 							<div class="option-img">
-								<img src="http://bit.ly/1JdBFga">
+								<img class="img-responsive" src="http://bit.ly/1JdBFga">
 							</div>
-							<div>
-								<h4>Option 1: {{option1}}</h4>
-						  		<button class="vote1"> Vote </button>
+							<div class="option-text">
+								<h4>{{option1}}</h4>
+						  		<!-- <button class="vote1"> Vote </button> -->
 							</div>
 						</a>
 				  	</div>
-				  	<div class="option one-half column">
+				  	<div class="option col-sm-6 vote2">
 				  		<a>
 					  		<div class="option-img">
-								<img src="http://bit.ly/1KhLjzU">
+								<img class="img-responsive" src="http://bit.ly/1KhLjzU">
 							</div>
-					  		<div>
-					  			<h4>Option 2: {{option2}}</h4>
-					  			<button class="vote2"> Vote </button>
+					  		<div class="option-text">
+					  			<h4>{{option2}}</h4>
+					  			<!-- <button class="vote2"> Vote </button> -->
 					  		</div>
 				  		</a>
 				  	</div>
 			  	</div>
 	  		</div>
-	  		
 		</div>
 	</li>
 </template>

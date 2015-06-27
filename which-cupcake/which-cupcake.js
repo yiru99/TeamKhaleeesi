@@ -26,11 +26,11 @@ if (Meteor.isClient) {
       return [
         { name: 'Open polls', slug: 'openpolls' },
         { name: 'Closed polls', slug: 'closedpolls' },
-        { name: 'My polls', slug: 'mypolls', onRender: function(template) {
-          // This callback runs every time this specific tab's content renders.
-          // As with `onChange`, the `template` instance is unique per block helper.
-          alert("[tabs] Things has been rendered!");
-        }}
+        // { name: 'My polls', slug: 'mypolls', onRender: function(template) {
+        //   // This callback runs every time this specific tab's content renders.
+        //   // As with `onChange`, the `template` instance is unique per block helper.
+        //   alert("[tabs] Things has been rendered!");
+        // }}
       ];
     },
     activeTab: function () {
