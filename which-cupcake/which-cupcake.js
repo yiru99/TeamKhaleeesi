@@ -51,7 +51,7 @@ if (Meteor.isClient) {
           console.log(visited);
           if (visited != null) {
               alert("You voted already!"); 
-              return;
+              return false;
           }
 
           var votesByPollId = polls.find(this._id);
@@ -71,7 +71,7 @@ if (Meteor.isClient) {
           console.log(visited);
           if (visited != null) {
               alert("You voted already!"); 
-              return;
+              return false;
           }
 
           var votesByPollId = polls.find(this._id);
