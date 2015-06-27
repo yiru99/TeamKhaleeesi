@@ -1,5 +1,27 @@
 body {
-    font-family: sans-serif;
+    background-color: #f0f0f0;
+    margin-top: 0px;
+}
+
+ul {
+	list-style: none;
+}
+
+.container {
+    font-family: "helvetica", sans-serif;
+    padding: 0px 30px;
+}
+
+/*@media (min-width: 400px) {
+	.container {
+		margin:0px;
+		max-width: 100%;
+	}
+}
+*/
+
+.card h5 {
+    font-size: 1.5rem;
 }
 
 .tab-list {
@@ -9,5 +31,47 @@ body {
 
 .basicTabs-container .tabs-content-container,
 .dynamicTabs-container .tabs-content-container {
-	border: none;
+    border: none;
+}
+
+.basicTabs-container .tabs-content-container,
+.dynamicTabs-container .tabs-content-container ul li {
+    list-style: none;
+}
+
+.card {
+    background: #fff;
+	border-bottom: 1px solid #ddd;
+	padding: 20px;
+}
+
+.option-row {
+    padding: 0px;
+}
+
+.option-img img  {
+	max-width: 300px; 
+	max-height: 300px;
+}
+
+.option-img img:hover {
+	border: 2px solid blue;
+}
+
+.question {
+    font-weight: 400;
+}
+
+.btn-ask-column {
+    text-align: right;
+}
+
+.ask {
+    margin-top: 10px;
+    text-align: right;
+    background-color: red;
+}
+
+.content{
+    display:none;
 }
