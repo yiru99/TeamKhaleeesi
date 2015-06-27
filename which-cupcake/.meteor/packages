@@ -11,3 +11,4 @@ templates:tabs
 ostrio:cookies
 cfs:standard-packages
 cfs:gridfs
+reactive-var
