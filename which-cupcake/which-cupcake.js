@@ -1,10 +1,9 @@
 polls = new Mongo.Collection("polls");
 
-
 if (Meteor.isClient) {
   Template.body.helpers({
     polls:function(){
-      return polls.find({});
+      return polls.find({},{sort: {createdAt: -1}});
     },
     isOpen: function(status){
       return status == "open"
@@ -17,6 +16,37 @@ if (Meteor.isClient) {
       // The `template` instance is unique per {{#basicTabs}} block.
       console.log('[tabs] Tab has changed! Current tab:', slug);
       console.log('[tabs] Template instance calling onChange:', template);
+    }
+  });
+
+  Template.body.events({  
+    'click button.ask': function(event, template) {
+      Session.set('activeModal', true);
+    },
+
+    "submit .addPoll": function (event) {
+    // This function is called when the new task form is submitted
+
+      var text = event.target.text.value;
+      var duration = event.target.duration.value;
+      var askedBy = event.target.askedBy.value;
+
+      polls.insert({
+        text: text,
+        createdAt: new Date() // current time
+      });
+
+      // Clear form
+      event.target.text.value = "";
+
+      // Prevent default form submit
+      return false;
+    }
+  });
+
+  Template.askModal.helpers({  
+    activeModal: function() {
+      return Session.get('activeModal');
     }
   });
 

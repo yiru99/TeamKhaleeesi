@@ -5,13 +5,15 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css">
 </head>
 
+
 <body>
 	<div class = "container">
 		<header>
   			<h1>Which cupcake?</h1>
-            <button class="ask">
+            <button class="ask" data-modal-template="askModal">
                  <i class="fa fa-plus" style="padding-right:5px;"></i>Ask
             </button>
+            {{>askModal}}
 		</header>
 		
 		<!-- Use `name` to add a custom class to the outer container -->
@@ -71,4 +73,14 @@
   <br>
 </template>
 
+<template name="askModal">  
+  {{#if activeModal}}
+    <form class="addPoll">
+      <input type="text" name="text" placeholder="Type to add new poll" />
+      <input type="number" name="duration" placeholder="Set a duration for your poll"/> <p>minutes</p>
+      <br>
+      <p>Asked By</p><input type="text" name="askedBy"/> 
+    </form>
+  {{/if}}
+</template>
 
