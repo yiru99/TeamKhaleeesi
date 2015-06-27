@@ -38,46 +38,52 @@
         {{/tabContent}} {{/basicTabs}}
     </div>
     {{> voteForm}}
+
 </body>
 <template name="poll">
-    <li class="row card">
-        <div class="card-content">
-            <div class="question-title">
-                <h2 class="question">{{text}}</h2>
-            </div>
-            <div class="content">
-                <div>
-                    <h5><span class="askedBy">{{askedBy}}</span> asked this question on <span class="time">{{createdAt}}</span></h5>
-                    <h5>Status:{{status}}</h5>
-                    <h5>There are {{timeLeft}} left to vote</h5>
-                </div>
-                <div class="option-row row">
-                    <div class="option col-sm-6 vote1">
-                        <a>
-                            <div class="option-img">
-                                <img class="img-responsive" src="http://bit.ly/1JdBFga">
-                            </div>
-                            <div class="option-text">
-                                <h4>{{option1}}</h4>
-                                <!-- <button class="vote1"> Vote </button> -->
-                            </div>
-                        </a>
-                    </div>
-                    <div class="option col-sm-6 vote2">
-                        <a>
-                            <div class="option-img">
-                                <img class="img-responsive" src="http://bit.ly/1KhLjzU">
-                            </div>
-                            <div class="option-text">
-                                <h4>{{option2}}</h4>
-                                <!-- <button class="vote2"> Vote </button> -->
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </li>
+	<li class="row card">
+		<div class="card-content">
+			<div class="question-title">
+				<h2 class="question">{{text}}</h2>
+			</div>
+	  		
+	  		<div class="content">
+		  		<div>
+
+			  		<h5><span class="askedBy">Asked By {{askedBy}}</span> </h5>
+			  		
+					<h5>There are {{timeLeft}} minutes left to vote</h5>
+		  		</div>
+				
+			  	<div class="option-row row">
+					<div class="option col-sm-6 vote1">
+						<a>
+							<div class="option-img">
+								<img class="img-responsive" src="http://bit.ly/1JdBFga">
+							</div>
+							<div class="option-text">
+								<h4>{{option1}}</h4>
+                                                                <div>{{vote1}}</div>
+						  		<button class="vote1"> Vote </button>
+							</div>
+						</a>
+				  	</div>
+				  	<div class="option col-sm-6 vote2">
+				  		<a>
+					  		<div class="option-img">
+								<img class="img-responsive" src="http://bit.ly/1KhLjzU">
+							</div>
+					  		<div class="option-text">
+					  			<h4>{{option2}}</h4>
+                                                                <div>{{vote2}}</div>
+					  			<button class="vote2"> Vote </button>
+					  		</div>
+				  		</a>
+				  	</div>
+			  	</div>
+	  		</div>
+		</div>
+	</li>
 </template>
 <template name="askModal" id="askModal">
     {{#if activeModal}}
@@ -127,11 +133,4 @@
         </div>
     </div>
     {{/if}}
-</template>
-<template name="voteForm">
-    <form>
-        <input type="text" name="pollId">
-        <input type="text" name="decision">
-        <input type="submit" value="Vote">
-    </form>
 </template>
