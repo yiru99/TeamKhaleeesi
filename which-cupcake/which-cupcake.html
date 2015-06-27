@@ -11,26 +11,19 @@
 <body>
 	<div class = "container">
 		<header>
-<<<<<<< HEAD
+
 			<div class="row">
 				<div class="eight columns">
 	  				<h1>Which cupcake?</h1>
 	  			</div>
 	  			<div class="four columns btn-ask-column">
-	  				<button class="btn-ask">
+	  				<button class="btn-ask" data-modal-template="askModal">
 	                	<i class="fa fa-plus" style="padding-right:5px;"></i>Ask
 	            	</button>
 	  			</div>
 			</div>
-=======
-  			<h1>Which cupcake?</h1>
-            <button class="ask" data-modal-template="askModal">
-                 <i class="fa fa-plus" style="padding-right:5px;"></i>Ask
-            </button>
-            {{>askModal}}
+			{{>askModal}}
 
-
->>>>>>> d508559922fa238158c92bd5fa92888e3284d515
 		</header>
 		
 		<!-- Use `name` to add a custom class to the outer container -->
