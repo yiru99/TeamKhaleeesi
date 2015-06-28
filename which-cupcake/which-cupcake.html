@@ -4,41 +4,54 @@
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.3.0/animate.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css">
     <script src="//use.typekit.net/zjr2ygg.js"></script>
-    <script>
-    try {
-        Typekit.load();
-    } catch (e) {}
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script>try{Typekit.load();}catch(e){}</script>
 </head>
 
-<body>
-    <div class="container">
-        <header>
-            <div class="row">
-                <div class="col-lg-6">
-                    <a href="/"><h1 class="logo-title"><!-- <span class="rainbow"> -->Which cupcake?<!-- </span> --></h1></a>
-                </div>
-                <div class="four columns btn-ask-column">
-                    <button type="button" class="ask btn btn-primary btn-lg" data-modal-template="askModal" data-toggle="modal" data-target="#askModal">
-                        <i class="fa fa-plus" style="padding-right:5px;"></i>Ask
-                    </button>
-                    {{>askModal}}
-                </div>
-            </div>
-        </header>
-        {{#basicTabs name="homepageTabs" tabs=tabs}} {{#tabContent slug="openpolls"}}
-        <ul>
-            {{#each polls}} {{#if isOpen status}} {{> poll}} {{/if}} {{/each}}
-        </ul>
-        {{/tabContent}} {{#tabContent slug="closedpolls"}}
-        <ul>
-            {{#each polls}} {{#unless isOpen status}} {{> poll}} {{/unless}} {{/each}}
-        </ul>
-        {{/tabContent}} {{/basicTabs}}
-    </div>
 
+<body>
+	<div class = "container">
+		<header>
+
+			<div class="row">
+				<div class="col-lg-6">
+	  				<a href="/"><h1 class="logo-title"><!-- <span class="rainbow"> -->Which cupcake?<!-- </span> --></h1></a>
+	  			</div>
+	  			<div class="four columns btn-ask-column">
+	  				<button class="ask" data-modal-template="askModal">
+	                	<i class="fa fa-plus" style="padding-right:5px;"></i>Ask
+	            	</button>
+	            	{{>askModal}}
+	  			</div>
+			</div>
+
+		</header>
+
+		{{#basicTabs name="homepageTabs" tabs=tabs}}
+    	{{#tabContent slug="openpolls"}}
+				<ul>
+			    {{#each polls}}
+			    	{{#if isOpen status}}
+			      	{{> poll}}
+			    	{{/if}}
+			    {{/each}}
+			  </ul>
+			{{/tabContent}}
+
+			{{#tabContent slug="closedpolls"}}
+				<ul>
+			    {{#each polls}}
+			    	{{#unless isOpen status}}
+			      	{{> poll}}
+			    	{{/unless}} 
+			    {{/each}}
+			  </ul>
+			{{/tabContent}}
+		{{/basicTabs}}
+	</div>
+
+      
 </body>
+
 <template name="poll">
 	<li class="row card">
 		<div class="card-content">
@@ -80,52 +93,26 @@
 		</div>
 	</li>
 </template>
-<template name="askModal" id="askModal">
-    {{#if activeModal}}
-    <div class="modal fade addPoll" id="askModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-	        <div class="modal-content">
-	        	<div class="modal-header">
-		        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        	<h4 class="modal-title" id="myModalLabel">Ask a question</h4>
-		      	</div>
-		      	<div class="modal-body">
-		      		<div class="container-fluid">
-				        <form>
-         					<div class="form-group">
-						        <label for="addPollQuestion" class="control-label">Ask a question:</label>
-						        <input class="form-control" type="text" id="addPollQuestion" name="text" placeholder="Ask anything..." />
-						    </div>
-						    
-						    <div class="form-inline">  
-						        <label for="addTimer" class="control-label">Add a timer: </label>
-						        <input class="form-control" id="addTimer" type="number" name="duration" placeholder="One" /><span> minutes</span>
-						    </div>
 
-						    <div class="form-group">
-						        <label>Option 1</label>
-						        <input type="file" name="option1" class="imageUpload1"> {{#if option1}}
-						        <a href="{{option1}}"> <img src="{{option1}}" height="100%" width="100"></a>
-						        {{/if}}
+<template name="askModal">  
+  {{#if activeModal}}
+    <form class="addPoll">
+      <input type="text" name="text" placeholder="Type to add new poll" />
+      <input type="number" name="duration" placeholder="Set a duration for your poll"/> <p>minutes</p>
+      <br>
+      <p>Option 1</p><input type="file" name="option1" class="imageUpload1">
+      {{#if option1}}
+      	<a href="{{option1}}"> <img src = "{{option1}}" height="100%" width="100"></a>
+      {{/if}}
 
-						        <label>Option 2</label>
-						        <input type="file" name="option2" class="imageUpload2"> {{#if option2}}
-						        <a href="{{option2}}"><img src="{{option2}}" height="100%" width="100"></a>
-						        {{/if}}
-						    </div>
-						    
-						    <div class="form-inline">
-						        <label for="askedBy">Asked By</label>
-						        <input class="form-control" id="askedBy" type="text" name="askedBy" />
-						    </div>
-						        
-						    <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>				    
-						
-						</form>
-				    </div>
-			    </div>
-	        </div>
-        </div>
-    </div>
-    {{/if}}
+      <p>Option 2</p><input type="file" name="option2" class="imageUpload2">
+      {{#if option2}}
+      	<a href="{{option2}}"><img src = "{{option2}}" height="100%" width="100"></a>
+      {{/if}}
+      <p>Asked By</p><input type="text" name="askedBy"/> 
+      <input type="submit" value="Submit">
+    </form>
+  {{/if}}
 </template>
+
+
