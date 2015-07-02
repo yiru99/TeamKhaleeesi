@@ -50,7 +50,7 @@ if (Meteor.isClient) {
           var visited = Meteor.cookie.get("which-cupcake"+this._id);
           console.log(visited);
           if (visited != null) {
-              // alert("You voted already!"); 
+              alert("You voted already!"); 
               return;
           }
 
@@ -70,7 +70,7 @@ if (Meteor.isClient) {
           var visited = Meteor.cookie.get("which-cupcake"+this._id);
           console.log(visited);
           if (visited != null) {
-              // alert("You voted already!"); 
+              alert("You voted already!"); 
               return;
           }
 
